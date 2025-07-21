@@ -1,16 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Thumbnail from "./_components/Thumbnail"
 
 import { getRegExp } from 'korean-regexp'
 import Searchbar from '../../components/Searchbar'
-import HeartFilterButton from "../../components/HeartFilterButton"
 
 const MainPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
   const filterText = useSelector((state) => state.filterTextState)
   const regExp = getRegExp(filterText.trim())
 
-  const dispatch = useDispatch()
   const doFilterHeart = useSelector((state) => state.doFilterHeartState)
 
   const filteredPokemonArray = pokemonArray.filter((pokemon) => {

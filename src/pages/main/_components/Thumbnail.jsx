@@ -25,12 +25,13 @@ const Thumbnail = ({ pokemon }) => {
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
       onClick={() => navigate(`/${pokemonIndex}`)}>
-      {/* <button className={likeButtonStyle} onClick={handleClick}>찜</button> */}
+
       <HeartButton pokemon={pokemon} isBig={false} />
       <img src={front} alt={name} className="flex-1" />
       <p className={style}>
         {name}
       </p>
+      
     </div>
   )
 }
