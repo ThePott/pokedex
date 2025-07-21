@@ -1,23 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { usePokemon } from '../../_hooks/hooks'
+import Thumnail from "./_components/Thumnail"
+
+import { getRegExp } from 'korean-regexp'
 
 const MainPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
-  const dispatch = useDispatch()
-  const setPokemonArray = (pokemonArray) => dispatch({type: "pokemonArray/setPokemonArray", pokemonArray})
+  const filterText = useSelector((state) => state.filterTextState)
+  const regExp = getRegExp(filterText.trim())
+  const filteredPokemonArray = pokemonArray.filter((pokemon) => pokemon.name.match(regExp))
+
 
   usePokemon()
-  console.log("---- pokemon array in main:", pokemonArray.length)
 
   return (
-    <>
-      <div>MainPage</div>
-      <button onClick={() => {console.log("---- pokemon array:", pokemonArray)}}>log pokemon array</button>
-      <br />
-      <button onClick ={() => {
-        setPokemonArray([1,2,3])
-      }}>test button</button>
-    </>
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
+      {filteredPokemonArray.map((pokemon, index) => <Thumnail key={index} front={pokemon.front} name={pokemon.name} />)}
+    </div>
   )
 }
 

@@ -4,17 +4,22 @@ const pokemonArraySlice = createSlice({
     name: "pokemonArray",
     initialState: [],
     reducers: {
-        setPokemonArray(_state, action) {
-            const pokemonArray = action.pokemonArray
-            console.log("---- pokemon array in store:", action.pokemonArray.length)
-            return pokemonArray
-        },
+        setPokemonArray(_state, action) { return action.pokemonArray },
+    }
+})
+
+const filterTextSlice = createSlice({
+    name: "filterText",
+    initialState: "",
+    reducers: {
+        setFilterText(_state, action) { return action.filterText }
     }
 })
 
 const store = configureStore({
     reducer: {
-        pokemonArrayState: pokemonArraySlice.reducer
+        pokemonArrayState: pokemonArraySlice.reducer,
+        filterTextState: filterTextSlice.reducer,
     }
 })
 

@@ -37,7 +37,6 @@ const getAllPokemon = async (setPokemonArray) => {
     // const indexArray = [1]
     const promiseArray = indexArray.reduce((acc, index) => [...acc, getPokemon(index)], [])
     const pokemonArray = await Promise.all(promiseArray)
-    console.log("----- pokemon array after promise all:", pokemonArray)
     setPokemonArray(pokemonArray)
 }
 
