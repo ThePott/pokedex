@@ -5,6 +5,15 @@ const pokemonArraySlice = createSlice({
     initialState: [],
     reducers: {
         setPokemonArray(_state, action) { return action.pokemonArray },
+        toggleLike(state, action) {
+            const newState = state.map((pokemon) => {
+                return pokemon.pokemonIndex === action.pokemon.pokemonIndex
+                    ? { ...pokemon, doLike: !pokemon.doLike }
+                    : { ...pokemon }
+            })
+
+            return newState
+        },
     }
 })
 

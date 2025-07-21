@@ -22,7 +22,7 @@ const getPokemon = async (index) => {
         const textDict = speciesJson["flavor_text_entries"].find((el) => el.language.name === "ko")
         const text = textDict["flavor_text"]
 
-        return {front, back, name, text, pokemonIndex: index}
+        return {front, back, name, text, pokemonIndex: index, doLike: false}
 
     } catch (error) {
         console.log("---- ERROR OCCURRED:", error)
