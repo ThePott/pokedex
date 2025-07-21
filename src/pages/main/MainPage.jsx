@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import Thumnail from "./_components/Thumnail"
+import Thumbnail from "./_components/Thumbnail"
 
 import { getRegExp } from 'korean-regexp'
 import Searchbar from '../../components/Searchbar'
@@ -15,7 +15,7 @@ const MainPage = () => {
       <Searchbar />
       <div style={{ scrollbarColor: "oklch(0.5 0 0) transparent" }} className="flex-1 overflow-x-hidden overflow-y-scroll">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
-          {filteredPokemonArray.map((pokemon, index) => <Thumnail key={index} pokemon={pokemon} />)}
+          {filteredPokemonArray.map((pokemon, index) => <Thumbnail key={index} pokemon={pokemon} />)}
         </div>
       </div>
     </div>
