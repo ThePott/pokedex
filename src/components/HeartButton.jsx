@@ -33,15 +33,16 @@ const HeartButton = ({ pokemon, isBig }) => {
         toggleLike()
     }
 
+    const calcTopRight = (pixel) => `top-[${pixel}px] right-[${pixel}px]`
+    const topRight = isBig ? calcTopRight(12) : calcTopRight(4)
 
-    const baseStyle = "transition"
+    const baseStyle = "h-[48px]"
     const color = doLike ? "text-red-500" : "text-red-800"
-    const size = isBig ? "h-[96px]" : "h-[48px]"
-    const style = `${baseStyle} ${size} ${color}`
+    const style = `${baseStyle} ${color}`
 
     return (
         <>
-            <div onClick={handleClick} className="w-[48px] h-[48px] absolute top-0 right-0">
+            <div onClick={handleClick} className={`absolute ${topRight}`}>
                 <HeartIcon style={style} doLike={doLike} />
             </div>
         </>

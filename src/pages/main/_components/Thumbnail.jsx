@@ -20,15 +20,13 @@ const Thumbnail = ({ pokemon }) => {
     toggleLike()
   }
 
-  const likeButtonStyle = `p-3 ${doLike ? "bg-red-500" : "bg-red-100"}`
-
   return (
     <div className="bg-amber-300 h-[200px] flex flex-col items-center rounded-3xl overflow-hidden cursor-pointer relative"
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
       onClick={() => navigate(`/${pokemonIndex}`)}>
       {/* <button className={likeButtonStyle} onClick={handleClick}>찜</button> */}
-      <HeartButton pokemon={pokemon} />
+      <HeartButton pokemon={pokemon} isBig={false} />
       <img src={front} alt={name} className="flex-1" />
       <p className={style}>
         {name}

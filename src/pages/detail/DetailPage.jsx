@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import HeartButton from '../../components/HeartButton'
 
 const DetailPage = () => {
   const [isFront, setIsFront] = useState(true)
@@ -20,7 +21,8 @@ const DetailPage = () => {
   const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
 
   return (
-    <div className="bg-amber-900 w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-3 gap-3 mx-auto mt-15">
+    <div className="bg-amber-900 w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-3 gap-3 mx-auto mt-15 relative">
+      <HeartButton pokemon={pokemon} isBig={true} />
       <h2 className="text-4xl font-semibold">{pokemon.name}</h2>
       <p className="text-xl">{pokemon.text}</p>
       <img src={src} alt={alt} className="flex-1" />
