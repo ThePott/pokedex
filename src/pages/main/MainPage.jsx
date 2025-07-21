@@ -11,7 +11,7 @@ const MainPage = () => {
   const filteredPokemonArray = pokemonArray.filter((pokemon) => pokemon.name.match(regExp))
 
 
-  usePokemon()
+  
 
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">

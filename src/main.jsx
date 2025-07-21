@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   {
     element: <Layout />, children: [
       { path: "/", element: <MainPage /> },
-      { path: "/:id", element: <DetailPage /> },
+      { path: "/:pokemonIndex", element: <DetailPage /> },
     ]
   },
 ]);

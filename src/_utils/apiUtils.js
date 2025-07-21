@@ -11,7 +11,7 @@ const getPokemon = async (index) => {
     try {
 
         const front = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`
-        const back = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/back/${index}.png`
+        const back = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${index}.png`
 
         const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${index}/`
         const speciesJson = await getJson(speciesUrl)
@@ -22,7 +22,7 @@ const getPokemon = async (index) => {
         const textDict = speciesJson["flavor_text_entries"].find((el) => el.language.name === "ko")
         const text = textDict["flavor_text"]
 
-        return {front, back, name, text}
+        return {front, back, name, text, pokemonIndex: index}
 
     } catch (error) {
         console.log("---- ERROR OCCURRED:", error)

@@ -1,8 +1,11 @@
 import { Outlet } from 'react-router'
 import Header from "./components/Header"
+import { usePokemon } from './_hooks/hooks'
 
 
 const Layout = () => {
+  usePokemon()
+
   return (
     <div className="flex flex-col items-center gap-3 w-screen h-screen overflow-hidden">
       <div className="w-full">

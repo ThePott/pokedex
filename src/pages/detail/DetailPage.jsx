@@ -1,8 +1,32 @@
-import React from 'react'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 
 const DetailPage = () => {
+  const [isFront, setIsFront] = useState(true)
+  const params = useParams()
+
+  if (!params) { return null }
+
+  const pokemonIndex = Number(params.pokemonIndex) ?? 1
+  const pokemonArray = useSelector((state) => state.pokemonArrayState)
+  const pokemon = pokemonArray.find((pokemon) => pokemon.pokemonIndex === pokemonIndex)
+
+  if (!pokemon) { return <h1>... is loading ...</h1> }
+
+  const src = isFront ? pokemon.front : pokemon.back
+  const alt = `${pokemon.name}__${isFront ? "front" : "back"}`
+
+  const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
+
   return (
-    <div>DetailPage</div>
+    <div className="bg-amber-900 w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-3 gap-3">
+      <h2 className="text-4xl font-semibold">{pokemon.name}</h2>
+      <p className="text-xl">{pokemon.text}</p>
+      <img src={src} alt={alt} className="flex-1" />
+      <button onClick={() => setIsFront((prev) => !prev)}
+        className="p-6 bg-amber-200 rounded-3xl">{buttonText}</button>
+    </div>
   )
 }
 
