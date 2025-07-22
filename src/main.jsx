@@ -24,10 +24,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/:pokemonIndex",
-        element: 
-        <Suspense fallback={<DetailPageSkeleton />}>
-        <DetailPage />
-        </Suspense>
+        element:
+          <Suspense fallback={<DetailPageSkeleton />}>
+            <DetailPage />
+          </Suspense>
       },
     ]
   },

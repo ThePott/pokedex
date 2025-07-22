@@ -29,10 +29,7 @@ const MainPage = () => {
     [pokemonArray, doFilterHeart, regExp]
   )
 
-
   if (pokemonArray.length === 0) { return <MainPageSkeleton /> }
-
-
 
   return (
     <div className="w-full h-full overflow-hidden flex flex-col gap-3">
