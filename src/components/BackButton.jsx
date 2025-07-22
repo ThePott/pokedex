@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router"
 
 const ChevronLeftIcon = ({ style }) => {
@@ -13,7 +13,7 @@ const ChevronLeftIcon = ({ style }) => {
   )
 }
 
-const BackButton = () => {
+const BackButton = React.memo(() => {
   const [isMouseOver, setIsMouseOver] = useState(false)
   const navigate = useNavigate()
 
@@ -23,9 +23,6 @@ const BackButton = () => {
   const iconColor = isMouseOver ? "opacity-90" : "opacity-30"
   const iconStyle = `${baseIconStyle} ${iconColor}`
 
-
-
-
   return (
     <div className={containerStyle}
       onMouseEnter={() => setIsMouseOver(true)}
@@ -34,6 +31,6 @@ const BackButton = () => {
       <ChevronLeftIcon style={iconStyle} />
     </div>
   )
-}
+})
 
 export default BackButton

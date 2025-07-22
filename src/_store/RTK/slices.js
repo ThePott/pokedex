@@ -22,7 +22,7 @@ const doFilterHeartSlice = createSlice({
     name: "doFilterHeart",
     initialState: false,
     reducers: {
-        toggleHeartFilter(state, _action) { return !state }
+        toggleHeartFilter(state, _action) { return !state },
     }
 })
 

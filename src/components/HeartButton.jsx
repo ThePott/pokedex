@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux'
 import HeartIcon from "./HeartIcon"
+import React from 'react'
 
-const HeartButton = ({ pokemon, isBig }) => {
+const HeartButton = React.memo(({ pokemon, isBig }) => {
     const { doLike } = pokemon
 
     const dispatch = useDispatch()
@@ -25,6 +26,6 @@ const HeartButton = ({ pokemon, isBig }) => {
             </div>
         </>
     )
-}
+})
 
 export default HeartButton

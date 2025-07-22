@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import HeartButton from '../../components/HeartButton'
@@ -22,7 +22,7 @@ const ImageSkeleton = () => {
   )
 }
 
-const FrontBackImage = ({ pokemon, isFront }) => {
+const FrontBackImage = React.memo(({ pokemon, isFront }) => {
   const [isLoadedArray, setIsLoadedArray] = useState({ front: false, back: false })
 
   const baseStyle = "flex-1 absolute w-full h-full object-contain"
@@ -50,24 +50,23 @@ const FrontBackImage = ({ pokemon, isFront }) => {
       <img onLoad={() => handleLoad(false)} style={imgFlipSx} src={pokemon.back} alt={`${pokemon.name}__back`} className={backStyle} />
     </div>
   )
-}
+})
 
-const FlippingBackground = ({ isFront }) => {
+const FlippingBackground = React.memo(({ isFront }) => {
   return (
     <div style={{ ...commonFlipSx, transform: `rotateY(${isFront ? 0 : 180}deg)` }}
       className="bg-amber-600 w-[600px] h-[600px] rounded-3xl absolute top-0 left-0 -z-10"></div>
   )
-}
+})
 
 const DetailPage = () => {
-
   const [isFront, setIsFront] = useState(true)
-  const params = useParams()
+  const pokemonArray = useSelector((state) => state.pokemonArrayState)
 
+  const params = useParams()
   if (!params) { return null }
 
   const pokemonIndex = Number(params.pokemonIndex) ?? 1
-  const pokemonArray = useSelector((state) => state.pokemonArrayState)
   const pokemon = pokemonArray.find((pokemon) => pokemon.pokemonIndex === pokemonIndex)
 
   if (!pokemon) { return <DetailPageSkeleton /> }

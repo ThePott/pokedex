@@ -1,4 +1,6 @@
-const HeartIcon = ({ doLike, style }) => {
+import React from "react"
+
+const HeartIcon = React.memo(({ doLike, style }) => {
     return (
         <>
             {doLike && <svg viewBox="0 0 12.3 12.17" fill="none" xmlns="http://www.w3.org/2000/svg" className={style}>
@@ -18,6 +20,6 @@ const HeartIcon = ({ doLike, style }) => {
             </svg>}
         </>
     )
-}
+})
 
 export default HeartIcon

@@ -6,7 +6,10 @@ import { useSearchParams } from "react-router"
 /** mount -> fetch pokemons */
 const usePokemon = () => {
     const dispatch = useDispatch()
-    const setPokemonArray = (pokemonArray) => dispatch({ type: "pokemonArray/setPokemonArray", pokemonArray })
+    const setPokemonArray = useCallback(
+        (pokemonArray) => dispatch({ type: "pokemonArray/setPokemonArray", pokemonArray }),
+        []
+    )
 
     useEffect(() => { getAllPokemon(setPokemonArray) }, [])
 }
@@ -17,7 +20,7 @@ const useThrottle = (delay) => {
     const startRef = useRef(new Date())
 
     const [_searchParams, setSearchParams] = useSearchParams();
-    
+
     const remainingDelay = useMemo(
         () => delay - (new Date() - startRef.current),
         [text]
@@ -27,7 +30,7 @@ const useThrottle = (delay) => {
         () => {
             const timeout = setTimeout(
                 () => {
-                    setSearchParams({name: text})
+                    setSearchParams({ name: text })
                     startRef.current = new Date()
 
                     return () => clearTimeout(timeout)

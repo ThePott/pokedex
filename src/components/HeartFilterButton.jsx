@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import HeartIcon from "./HeartIcon"
+import React from 'react'
 
-const HeartFilterButton = () => {
+const HeartFilterButton = React.memo(() => {
   const dispatch = useDispatch()
   const doFilterHeart = useSelector((state) => state.doFilterHeartState)
 
@@ -16,6 +17,6 @@ const HeartFilterButton = () => {
       <HeartIcon doLike={doFilterHeart} style={style} />
     </div>
   )
-}
+})
 
 export default HeartFilterButton
