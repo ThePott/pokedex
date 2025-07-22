@@ -41,8 +41,8 @@ const MainPage = () => {
         
         <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
           {pokemonArray.map((pokemon, index) => (
-            <div key={index} onClick={() => navigate(`/${pokemon.pokemonIndex}`)}>
-              <Thumbnail pokemon={pokemon} isVisible={isVisibleArray[index]} />
+            <div key={index} onClick={() => navigate(`/${pokemon.pokemonIndex}`)} className={`${!isVisibleArray[index] && "hidden"}`}>
+              <Thumbnail pokemon={pokemon} />
             </div>
           ))}
         </section>

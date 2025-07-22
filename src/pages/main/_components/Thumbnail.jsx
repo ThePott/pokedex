@@ -1,17 +1,12 @@
 import React, { useState } from "react"
 import HeartButton from "../../../components/HeartButton"
 
-const Thumbnail = React.memo(({ pokemon, isVisible }) => {
-  if (pokemon.pokemonIndex === 1) {
-    console.log("---- rerender:", pokemon.name, isVisible)
-  }
-
+const Thumbnail = React.memo(({ pokemon }) => {
   const { front, name } = pokemon
   const [isMouseOver, setIsMouseOver] = useState(false)
 
   const containerBaseStyle = "bg-zinc-700 h-[200px] flex flex-col items-center rounded-3xl overflow-hidden cursor-pointer relative"
-  const containerVisibilityStyle = isVisible ? "" : "hidden"
-  const containerStyle = `${containerBaseStyle} ${containerVisibilityStyle}`
+  const containerStyle = `${containerBaseStyle}`
 
   const nameBaseStyle = "p-3 w-full text-center text-xl font-semibold transition"
   const nameTagBg = isMouseOver ? "bg-zinc-950" : "bg-zinc-800"
