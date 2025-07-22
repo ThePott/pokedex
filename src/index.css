@@ -18,3 +18,14 @@
 img {
   image-rendering: pixelated;
 }
+
+/* img {
+  image-rendering: pixelated;
+  backface-visibility: hidden;
+  transition-property: transform;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+img:hover {
+  transform: rotateY(180deg);
+} */

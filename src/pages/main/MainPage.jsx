@@ -9,7 +9,7 @@ const MainPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
   
   const [searchParams, _setSearchParams] = useSearchParams()
-  const filterText = searchParams.get("name")
+  const filterText = searchParams.get("name") ?? ""
   const regExp = getRegExp(filterText.trim())
 
   const doFilterHeart = useSelector((state) => state.doFilterHeartState)
