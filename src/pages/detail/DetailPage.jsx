@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import HeartButton from '../../components/HeartButton'
 import BackButton from '../../components/BackButton'
+import DetailPageSkeleton from "./DetailPageSkeleton"
 
 const commonFlipSx = {
   transitionProperty: "transform",
@@ -15,15 +16,38 @@ const imgFlipSx = {
   backfaceVisibility: "hidden",
 }
 
+const ImageSkeleton = () => {
+  return (
+    <div className="flex-1 w-full rounded-3xl border-1 border-amber-950 absolute z-10 h-full" />
+  )
+}
+
 const FrontBackImage = ({ pokemon, isFront }) => {
+  const [isLoadedArray, setIsLoadedArray] = useState({ front: false, back: false })
+
   const baseStyle = "flex-1 absolute w-full h-full object-contain"
   const frontStyle = `${baseStyle} ${isFront ? "" : "rotate-y-180"}`
   const backStyle = `${baseStyle} ${!isFront ? "" : "rotate-y-180"}`
 
+  const isLoaded = useMemo(
+    () => Object.values(isLoadedArray).reduce((acc, cur) => acc && cur, true),
+    [isLoadedArray]
+  )
+
+  const handleLoad = (isForFront) => {
+    setIsLoadedArray((prev) => {
+      if (isForFront) {
+        return { ...prev, front: true }
+      }
+      return { ...prev, back: true }
+    })
+  }
+
   return (
     <div className="relative select-none flex-1 w-full">
-      <img style={imgFlipSx} src={pokemon.front} alt={`${pokemon.name}__front`} className={frontStyle} />
-      <img style={imgFlipSx} src={pokemon.back} alt={`${pokemon.name}__back`} className={backStyle} />
+      {!isLoaded && <ImageSkeleton />}
+      <img onLoad={() => handleLoad(true)} style={imgFlipSx} src={pokemon.front} alt={`${pokemon.name}__front`} className={frontStyle} />
+      <img onLoad={() => handleLoad(false)} style={imgFlipSx} src={pokemon.back} alt={`${pokemon.name}__back`} className={backStyle} />
     </div>
   )
 }
@@ -36,6 +60,7 @@ const FlippingBackground = ({ isFront }) => {
 }
 
 const DetailPage = () => {
+
   const [isFront, setIsFront] = useState(true)
   const params = useParams()
 
@@ -45,7 +70,7 @@ const DetailPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
   const pokemon = pokemonArray.find((pokemon) => pokemon.pokemonIndex === pokemonIndex)
 
-  if (!pokemon) { return <h2>... is loading ...</h2> }
+  if (!pokemon) { return <DetailPageSkeleton /> }
 
   const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
 

@@ -5,9 +5,11 @@ import { getRegExp } from 'korean-regexp'
 import Searchbar from '../../components/Searchbar'
 import { useSearchParams } from 'react-router'
 
+import MainPageSkeleton from "./MainPageSkeleton"
+
 const MainPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
-  
+
   const [searchParams, _setSearchParams] = useSearchParams()
   const filterText = searchParams.get("name") ?? ""
   const regExp = getRegExp(filterText.trim())
@@ -22,6 +24,7 @@ const MainPage = () => {
     return pokemon.name.match(regExp) && pokemon.doLike
   })
 
+  if (pokemonArray.length === 0) { return <MainPageSkeleton /> }
 
   return (
     <div className="w-full h-full overflow-hidden flex flex-col gap-3">
