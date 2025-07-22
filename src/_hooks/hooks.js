@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { getAllPokemon } from "../_utils/apiUtils"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useSearchParams } from "react-router"
 
 /** mount -> fetch pokemons */
 const usePokemon = () => {
@@ -13,16 +14,10 @@ const usePokemon = () => {
 /** input change -> throttle -> filter pokemon name */
 const useThrottle = (delay) => {
     const [text, setText] = useState("")
-
     const startRef = useRef(new Date())
 
-    const dispatch = useDispatch()
-
-    const setFilterText = useCallback(
-        () => dispatch({ type: "filterText/setFilterText", filterText: text }),
-        [text]
-    )
-
+    const [_searchParams, setSearchParams] = useSearchParams();
+    
     const remainingDelay = useMemo(
         () => delay - (new Date() - startRef.current),
         [text]
@@ -32,7 +27,7 @@ const useThrottle = (delay) => {
         () => {
             const timeout = setTimeout(
                 () => {
-                    setFilterText()
+                    setSearchParams({name: text})
                     startRef.current = new Date()
 
                     return () => clearTimeout(timeout)

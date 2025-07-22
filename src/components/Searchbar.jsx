@@ -7,13 +7,14 @@ const Searchbar = () => {
   const [isFocused, setIsFocused] = useState(false)
   const { setText } = useThrottle(100)
 
-  const color = `${isFocused ? "zinc-400" : "zinc-500"}`
-
+  
   const iconBaseStyle = "h-[30px] transition"
-  const iconStyle = `${iconBaseStyle} text-${color}`
-
+  const iconColor = `${isFocused ? "text-zinc-300" : "text-zinc-600"}`
+  const iconStyle = `${iconBaseStyle} ${iconColor}`
+  
   const containerBaseStyle = "flex items-center gap-3 p-3 rounded-3xl border-1 transition"
-  const containerStyle = `${containerBaseStyle} border-${color}`
+  const borderColor = `${isFocused ? "border-zinc-300" : "border-zinc-600"}`
+  const containerStyle = `${containerBaseStyle} ${borderColor}`
 
   return (
     <div className={containerStyle}>

@@ -27,7 +27,7 @@ const Thumbnail = ({ pokemon }) => {
       onClick={() => navigate(`/${pokemonIndex}`)}>
 
       <HeartButton pokemon={pokemon} isBig={false} />
-      <img src={front} alt={name} className="flex-1" />
+      <img src={front} alt={name} className="flex-1 select-none" />
       <p className={style}>
         {name}
       </p>

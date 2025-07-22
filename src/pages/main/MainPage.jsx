@@ -3,10 +3,13 @@ import Thumbnail from "./_components/Thumbnail"
 
 import { getRegExp } from 'korean-regexp'
 import Searchbar from '../../components/Searchbar'
+import { useSearchParams } from 'react-router'
 
 const MainPage = () => {
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
-  const filterText = useSelector((state) => state.filterTextState)
+  
+  const [searchParams, _setSearchParams] = useSearchParams()
+  const filterText = searchParams.get("name")
   const regExp = getRegExp(filterText.trim())
 
   const doFilterHeart = useSelector((state) => state.doFilterHeartState)
@@ -18,6 +21,7 @@ const MainPage = () => {
 
     return pokemon.name.match(regExp) && pokemon.doLike
   })
+
 
   return (
     <div className="w-full h-full overflow-hidden flex flex-col gap-3">

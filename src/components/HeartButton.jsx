@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import HeartIcon from "./HeartIcon"
 
 const HeartButton = ({ pokemon, isBig }) => {
@@ -11,16 +11,16 @@ const HeartButton = ({ pokemon, isBig }) => {
         toggleLike()
     }
 
-    const calcTopRight = (pixel) => `top-[${pixel}px] right-[${pixel}px]`
-    const topRight = isBig ? calcTopRight(12) : calcTopRight(4)
-
-    const baseStyle = "h-[48px]"
+    const size = isBig ? "h-[40px]" : "h-[30px]"
     const color = doLike ? "text-red-500" : "text-red-800"
-    const style = `${baseStyle} ${color}`
+    const style = `${size} ${color}`
+
+    const padding = isBig ? "p-3" : "p-2"
+    const containerStyle = `absolute top-0 right-0 ${padding}`
 
     return (
         <>
-            <div onClick={handleClick} className={`absolute ${topRight}`}>
+            <div onClick={handleClick} className={containerStyle}>
                 <HeartIcon style={style} doLike={doLike} />
             </div>
         </>

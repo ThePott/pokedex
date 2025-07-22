@@ -17,13 +17,6 @@ const pokemonArraySlice = createSlice({
     }
 })
 
-const filterTextSlice = createSlice({
-    name: "filterText",
-    initialState: "",
-    reducers: {
-        setFilterText(_state, action) { return action.filterText }
-    }
-})
 
 const doFilterHeartSlice = createSlice({
     name: "doFilterHeart",
@@ -33,4 +26,4 @@ const doFilterHeartSlice = createSlice({
     }
 })
 
-export { doFilterHeartSlice, filterTextSlice, pokemonArraySlice };
+export { doFilterHeartSlice, pokemonArraySlice };

@@ -21,13 +21,13 @@ const DetailPage = () => {
   const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
 
   return (
-    <div className="bg-amber-600 w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-3 gap-3 mx-auto mt-15 relative">
+    <div className="bg-amber-600 w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden py-3 px-16 gap-3 mx-auto mt-15 relative">
       <HeartButton pokemon={pokemon} isBig={true} />
       <h2 className="text-4xl font-semibold">{pokemon.name}</h2>
-      <p className="text-xl">{pokemon.text}</p>
-      <img src={src} alt={alt} className="flex-1" />
+      <p className="text-xl break-keep">{pokemon.text}</p>
+      <img src={src} alt={alt} className="flex-1 select-none" />
       <button onClick={() => setIsFront((prev) => !prev)}
-        className="p-6 bg-amber-900 rounded-3xl">{buttonText}</button>
+        className="p-6 bg-amber-900 rounded-3xl text-xl">{buttonText}</button>
     </div>
   )
 }
