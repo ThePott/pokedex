@@ -25,7 +25,7 @@ const ImageSkeleton = () => {
 const FrontBackImage = React.memo(({ pokemon, isFront }) => {
   const [isLoadedArray, setIsLoadedArray] = useState({ front: false, back: false })
 
-  const baseStyle = "flex-1 absolute w-full h-full object-contain"
+  const baseStyle = `flex-1 absolute w-full h-full object-contain scale-150`
   const frontStyle = `${baseStyle} ${isFront ? "" : "rotate-y-180"}`
   const backStyle = `${baseStyle} ${!isFront ? "" : "rotate-y-180"}`
 
@@ -44,7 +44,7 @@ const FrontBackImage = React.memo(({ pokemon, isFront }) => {
   }
 
   return (
-    <div className="relative select-none flex-1 w-full">
+    <div className={`relative select-none flex-1 w-full pointer-events-none`}>
       {!isLoaded && <ImageSkeleton />}
       <img onLoad={() => handleLoad(true)} style={imgFlipSx} src={pokemon.front} alt={`${pokemon.name}__front`} className={frontStyle} />
       <img onLoad={() => handleLoad(false)} style={imgFlipSx} src={pokemon.back} alt={`${pokemon.name}__back`} className={backStyle} />
@@ -61,6 +61,8 @@ const FlippingBackground = React.memo(({ isFront }) => {
 
 const DetailPage = () => {
   const [isFront, setIsFront] = useState(true)
+  const [isMouseOver, setIsMouseOver] = useState(false)
+
   const pokemonArray = useSelector((state) => state.pokemonArrayState)
 
   const params = useParams()
@@ -74,7 +76,10 @@ const DetailPage = () => {
   const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
 
   return (
-    <div className="w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-6 px-16 gap-3 mx-auto mt-15 relative">
+    <div className="w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-6 px-16 gap-3 mx-auto mt-15 relative"
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}>
+
       <FlippingBackground isFront={isFront} />
       <BackButton />
       <HeartButton pokemon={pokemon} isBig={true} />
@@ -82,7 +87,7 @@ const DetailPage = () => {
       <h2 className="text-4xl font-semibold">{pokemon.name}</h2>
       <p className="text-xl break-keep">{pokemon.text}</p>
 
-      <FrontBackImage pokemon={pokemon} isFront={isFront} />
+      <FrontBackImage pokemon={pokemon} isFront={isFront} isMouseOver={isMouseOver} />
 
       <button onClick={() => setIsFront((prev) => !prev)}
         className="transition p-6 bg-zinc-900 border-1 border-zinc-300 rounded-3xl text-xl  hover:bg-zinc-950 active:border-zinc-500">{buttonText}</button>
