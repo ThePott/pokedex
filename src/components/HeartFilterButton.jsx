@@ -9,7 +9,7 @@ const HeartFilterButton = React.memo(() => {
   const toggleHeartFilter = () => dispatch({ type: "doFilterHeart/toggleHeartFilter" })
 
   const baseStyle = "h-[30px]"
-  const color = doFilterHeart ? "text-red-500" : "text-red-800"
+  const color = "text-red-400"
   const style = `${baseStyle} ${color}`
 
   return (

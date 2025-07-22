@@ -13,11 +13,11 @@ const HeartButton = React.memo(({ pokemon, isBig }) => {
     }
 
     const size = isBig ? "h-[40px]" : "h-[30px]"
-    const color = doLike ? "text-red-500" : "text-red-800"
+    const color = "text-red-400"
     const style = `${size} ${color}`
 
     const padding = isBig ? "p-6" : "p-2"
-    const containerStyle = `absolute top-0 right-0 ${padding}`
+    const containerStyle = `absolute top-0 right-0 z-20 ${padding}`
 
     return (
         <>

@@ -55,7 +55,7 @@ const FrontBackImage = React.memo(({ pokemon, isFront }) => {
 const FlippingBackground = React.memo(({ isFront }) => {
   return (
     <div style={{ ...commonFlipSx, transform: `rotateY(${isFront ? 0 : 180}deg)` }}
-      className="bg-amber-600 w-[600px] h-[600px] rounded-3xl absolute top-0 left-0 -z-10"></div>
+      className="bg-zinc-800 w-[600px] h-[600px] rounded-3xl absolute top-0 left-0 -z-10"></div>
   )
 })
 
@@ -85,7 +85,7 @@ const DetailPage = () => {
       <FrontBackImage pokemon={pokemon} isFront={isFront} />
 
       <button onClick={() => setIsFront((prev) => !prev)}
-        className="p-6 bg-amber-900 rounded-3xl text-xl">{buttonText}</button>
+        className="transition p-6 bg-zinc-900 border-1 border-zinc-300 rounded-3xl text-xl  hover:bg-zinc-950 active:border-zinc-500">{buttonText}</button>
 
     </div>
   )
