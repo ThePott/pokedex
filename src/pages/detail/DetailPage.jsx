@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import HeartButton from '../../components/HeartButton'
+import BackButton from '../../components/BackButton'
 
 const commonFlipSx = {
   transitionProperty: "transform",
@@ -49,8 +50,9 @@ const DetailPage = () => {
   const buttonText = isFront ? "등이 가려워!" : "배가 가려워!"
 
   return (
-    <div className="w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden py-3 px-16 gap-3 mx-auto mt-15 relative">
+    <div className="w-[600px] h-[600px] flex flex-col items-center rounded-3xl overflow-hidden p-6 px-16 gap-3 mx-auto mt-15 relative">
       <FlippingBackground isFront={isFront} />
+      <BackButton />
       <HeartButton pokemon={pokemon} isBig={true} />
 
       <h2 className="text-4xl font-semibold">{pokemon.name}</h2>

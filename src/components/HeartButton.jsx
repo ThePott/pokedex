@@ -15,7 +15,7 @@ const HeartButton = ({ pokemon, isBig }) => {
     const color = doLike ? "text-red-500" : "text-red-800"
     const style = `${size} ${color}`
 
-    const padding = isBig ? "p-3" : "p-2"
+    const padding = isBig ? "p-6" : "p-2"
     const containerStyle = `absolute top-0 right-0 ${padding}`
 
     return (
