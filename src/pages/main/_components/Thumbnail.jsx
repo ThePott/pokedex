@@ -5,7 +5,7 @@ const Thumbnail = React.memo(({ pokemon }) => {
   const { front, name } = pokemon
   const [isMouseOver, setIsMouseOver] = useState(false)
 
-  const containerBaseStyle = "hover:-translate-y-[12px] hover:shadow-[0_16px_32px_rgba(0,0,0,0.3)] transition hover:scale-110 hover:z-90 hover:bg-zinc-800 bg-zinc-700 h-[200px] flex flex-col items-center rounded-3xl cursor-pointer relative"
+  const containerBaseStyle = "hover:scale-110 hover:z-90 hover:-translate-y-[10px] hover:shadow-[0_16px_32px_rgba(0,0,0,0.3)] transition  hover:bg-zinc-800 bg-zinc-700 h-[200px] flex flex-col items-center rounded-3xl cursor-pointer relative"
   const containerStyle = `${containerBaseStyle}`
 
   const nameBaseStyle = "p-3 w-full text-center text-xl font-semibold transition"

@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux"
-import { getAllPokemon } from "../_utils/apiUtils"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useSearchParams } from "react-router"
+import { getAllPokemon } from "../_utils/apiUtils"
 
 /** mount -> fetch pokemons */
 const usePokemon = () => {
@@ -33,10 +33,10 @@ const useThrottle = (delay) => {
                     setSearchParams({ name: text })
                     startRef.current = new Date()
 
-                    return () => clearTimeout(timeout)
                 },
                 remainingDelay
             )
+            return () => clearTimeout(timeout)
         },
         [text]
     )
